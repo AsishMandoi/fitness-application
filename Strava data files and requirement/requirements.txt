@@ -1,0 +1,31 @@
+#1. What is my average pace
+#2. What is my longest run and when............................................................................*****
+*3. Total calorie burned in a day and calorie burned by activity...............................................*****
+#4. My activity summary for today [x km (run. steps, cycling ), workout],......................................*****
+#5. How am I performing during one activity ( distance, pace, heart rate, elevation) - presenatation
+*6. Longest streak / Longest break/ current  break
+*7. Personal record (highest pace, longest run/walk.ride), most active day(highest calorie burn))..............*****
+
+Anything you think that can ne added...
+
+
+Ask avinash about "highest pace";
+Running Data
+Total distance while running = 81980.1 metres
+Total elevation while running = 274.3 metres
+Average pace while running = 1.3494583333333 m/s
+Average heart rate while running = 110.48333333333 bpm
+Longest run = 6114.8 metres on 2020-12-27
+
+Cycling Data
+No rides yet
+
+Swimming Data
+No swims yet
+
+Walking Data
+Total distance while walking = 3237.7 metres
+Total elevation while walking = 29 metres
+Average pace while walking = 0.87933333333333 m/s
+Average heart rate while walking = 129.7 bpm
+Longest walk = 580 metres on 2020-12-19

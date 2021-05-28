@@ -85,30 +85,34 @@
     $swim_per_day = mysqli_query($conn, "SELECT SUM(distance) AS dist, SUM(moving_time) AS time, start_date AS 'Date' FROM $table_name WHERE type='Swim' GROUP BY start_date ORDER BY start_date;");
     $walk_per_day = mysqli_query($conn, "SELECT SUM(distance) AS dist, SUM(moving_time) AS time, SUM(average_cadence) as cadence, start_date AS 'Date' FROM $table_name WHERE type='Walk' GROUP BY start_date ORDER BY start_date;");
     
+    $cal_run_per_day = mysqli_query($conn, "SELECT SUM(calories) AS cal, start_date FROM $table2_name WHERE type='Run' GROUP BY start_date ORDER BY start_date;");
+    $cal_ride_per_day = mysqli_query($conn, "SELECT SUM(calories) AS cal, start_date FROM $table2_name WHERE type='Ride' GROUP BY start_date ORDER BY start_date;");
+    $cal_swim_per_day = mysqli_query($conn, "SELECT SUM(calories) AS cal, start_date FROM $table2_name WHERE type='Swim' GROUP BY start_date ORDER BY start_date;");
+    $cal_walk_per_day = mysqli_query($conn, "SELECT SUM(calories) AS cal, start_date FROM $table2_name WHERE type='Walk' GROUP BY start_date ORDER BY start_date;");
+
     $run_row = mysqli_fetch_assoc($run_per_day); $ride_row = mysqli_fetch_assoc($ride_per_day); $swim_row = mysqli_fetch_assoc($swim_per_day); $walk_row = mysqli_fetch_assoc($walk_per_day);
-    while($run_row || $ride_row || $swim_row || $walk_row) {
-        $date; $dist_run=0; $dist_ride=0; $dist_swim=0; $dist_walk=0; $time_run=0; $time_ride=0; $time_swim=0; $time_walk=0; $cadence_run=0; $cadence_walk=0;
-        if($run_row){
-            $date = $run_row['Date']; $dist_run=$run_row['dist']; $time_run=$run_row['time']; $cadence_run=$run_row['cadence'];
-        }
-        if($ride_row){
-            $date = $ride_row['Date']; $dist_ride=$ride_row['dist']; $time_ride=$ride_row['time'];
-        }
-        if($swim_row){
-            $date = $swim_row['Date']; $dist_swim=$swim_row['dist']; $time_swim=$swim_row['time'];
-        }
-        if($walk_row){
-            $date = $walk_row['Date']; $dist_walk=$walk_row['dist']; $time_walk=$walk_row['time']; $cadence_walk=$walk_row['cadence'];
-        }
+    $run_cal = mysqli_fetch_assoc($cal_run_per_day); $ride_cal = mysqli_fetch_assoc($cal_ride_per_day); $swim_cal = mysqli_fetch_assoc($cal_swim_per_day); $walk_cal = mysqli_fetch_assoc($cal_walk_per_day);    
+    while($run_row || $ride_row || $swim_row || $walk_row || $run_cal || $ride_cal || $swim_cal || $walk_cal) {
+        $date; $dist_run=0; $dist_ride=0; $dist_swim=0; $dist_walk=0; $time_run=0; $time_ride=0; $time_swim=0; $time_walk=0; $cadence_run=0; $cadence_walk=0; $cal_run=0; $cal_ride=0; $cal_swim=0; $cal_walk=0;
+        if($run_row) { $date = $run_row['Date']; $dist_run=$run_row['dist']; $time_run=$run_row['time']; $cadence_run=$run_row['cadence'];}
+        if($ride_row) { $date = $ride_row['Date']; $dist_ride=$ride_row['dist']; $time_ride=$ride_row['time'];}
+        if($swim_row) { $date = $swim_row['Date']; $dist_swim=$swim_row['dist']; $time_swim=$swim_row['time'];}
+        if($walk_row) { $date = $walk_row['Date']; $dist_walk=$walk_row['dist']; $time_walk=$walk_row['time']; $cadence_walk=$walk_row['cadence'];}
+        if($run_cal) { $date = $run_cal['start_date']; $cal_run=$run_cal['cal'];}
+        if($ride_cal) { $date = $ride_cal['start_date']; $cal_ride=$ride_cal['cal'];}
+        if($swim_cal) { $date = $swim_cal['start_date']; $cal_swim=$swim_cal['cal'];}
+        if($walk_cal) { $date = $walk_cal['start_date']; $cal_walk=$walk_cal['cal'];}
+        
         echo "<b>" . $date . ":</b><br>";
-        echo "You ran " . $dist_run. " metres for " . $time_run/60 . " minutes.<br>";
-        echo "You rode " . $dist_ride. " metres for " . $time_ride/60 . " minutes. Your average cadence was " . $cadence_run . " steps/min <br>";
-        echo "You swam " . $dist_swim. " metres for " . $time_swim/60 . " minutes.<br>";
-        echo "You walked " . $dist_walk. " metres for " . $time_walk/60 . " minutes. Your average cadence was " . $cadence_walk . " steps/min <br>";
+        echo "You ran " . $dist_run. " metres for " . $time_run/60 . " minutes. You lost " . $cal_run . " calories by running. Your average cadence was " . $cadence_run . " steps/min.<br>";
+        echo "You rode " . $dist_ride. " metres for " . $time_ride/60 . " minutes. You lost " . $cal_ride . " calories by cycling.<br>";
+        echo "You swam " . $dist_swim. " metres for " . $time_swim/60 . " minutes. You lost " . $cal_swim . " calories by swimming.<br>";
+        echo "You walked " . $dist_walk. " metres for " . $time_walk/60 . " minutes. You lost " . $cal_walk . " calories by walking. Your average cadence was " . $cadence_walk . " steps/min <br>";
         $run_row = mysqli_fetch_assoc($run_per_day); $ride_row = mysqli_fetch_assoc($ride_per_day); $swim_row = mysqli_fetch_assoc($swim_per_day); $walk_row = mysqli_fetch_assoc($walk_per_day);
+        $run_cal = mysqli_fetch_assoc($cal_run_per_day); $ride_cal = mysqli_fetch_assoc($cal_ride_per_day); $swim_cal = mysqli_fetch_assoc($cal_swim_per_day); $walk_cal = mysqli_fetch_assoc($cal_walk_per_day);
         echo "<br>";
     }
-    // $cal_run_per_day = mysqli_
+
     ?>
 
 

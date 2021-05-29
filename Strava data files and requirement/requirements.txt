@@ -1,9 +1,9 @@
 #1. What is my average pace
-#2. What is my longest run and when............................................................................*****
-#3. Total calorie burned in a day and calorie burned by activity...............................................*****
-#4. My activity summary for today [x km (run. steps, cycling ), workout],......................................*****
+#2. What is my longest run and when
+#3. Total calorie burned in a day and calorie burned by activity
+#4. My activity summary for today [x km (run. steps, cycling ), workout]
 #5. How am I performing during one activity ( distance, pace, heart rate, elevation) - presenatation
-*6. Longest streak / Longest break/ current  break
-*7. Personal record (highest pace, longest run/walk.ride), most active day(highest calorie burn))..............*****
+#6. Longest streak / Longest break/ current  break
+#7. Personal record (highest pace, longest run/walk.ride), most active day(highest calorie burn))
 
 Anything you think that can ne added...

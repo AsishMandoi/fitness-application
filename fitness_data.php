@@ -112,10 +112,9 @@
         $run_cal = mysqli_fetch_assoc($cal_run_per_day); $ride_cal = mysqli_fetch_assoc($cal_ride_per_day); $swim_cal = mysqli_fetch_assoc($cal_swim_per_day); $walk_cal = mysqli_fetch_assoc($cal_walk_per_day);
         echo "<br>";
     }
-
+    $max_cal = mysqli_fetch_assoc(mysqli_query($conn, "SELECT start_date, SUM(calories) max_cal from $table2_name group by start_date having SUM(calories) = (select MAX(sum_cal) from (select SUM(calories) sum_cal from $table2_name group by start_date) tab);"));
+    if($max_cal) echo "<br><b>You were most active on " . $max_cal['start_date'] . "! You lost a total of " . $max_cal['max_cal'] . " calories on this day. Keep going!</b>";
     ?>
-
-
 
     <p style="text-align: center; font-size: x-small;">
         <br><br><br>© 2021 by Asish Mandoi. All rights reserved.
